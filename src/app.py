@@ -4,12 +4,12 @@
 # ライブラリのインポート
 from datetime import datetime, timedelta
 
+# import weather_forecast
 from flask import Flask, render_template, request
 from markupsafe import Markup
 
 import omikuji
-import school_timetable
-import weather_forecast
+import school_timetable_old
 
 # Flaskのインスタンス化
 application = Flask(__name__, static_folder="static", template_folder="templates")
@@ -38,11 +38,11 @@ def tomorrow_plan() -> str:
     tomorrow_dt = datetime.now() + timedelta(days=1)
     tomorrow_dt_str = f"{tomorrow_dt.strftime('%Y/%m/%d')}({DAY_NAME[tomorrow_dt.weekday()]})"
 
-    # 明日の天気予報
-    weather_osaka = weather_forecast.get_osaka_tomorrow_weather()
+    # # 明日の天気予報
+    # weather_osaka = weather_forecast.get_osaka_tomorrow_weather()
 
     # 明日の時間割
-    tomorrow_lessons = school_timetable.get_tomorrow_timetable()
+    tomorrow_lessons = school_timetable_old.get_tomorrow_timetable()
     timetable = [[lesson.period, lesson.subject, lesson.classroom, lesson.teacher] for lesson in tomorrow_lessons]
 
     # おみくじを引く
@@ -58,7 +58,7 @@ def tomorrow_plan() -> str:
         "./tomorrow_plan.html",
         date=tomorrow_dt_str,
         weather_area="大阪",
-        weather_result=weather_osaka,
+        # weather_result=weather_osaka,
         school_timetable=timetable,
         fortune_result=fortune_result,
         fortune_advice=Markup(fortune_advice.replace("\n", "<br>")),
