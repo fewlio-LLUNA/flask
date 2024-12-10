@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
-
+<html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>トップページ</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>支出管理</title>
 </head>
-
 <body>
-    <h1>大阪情報専門学校 2024 Linuxサーバ構築(R3SC)</h1>
-    <a href="tomorrow_plan">明日の予定は。。</a>
+<div class="container mt-5">
+    <h1 class="text-center">支出管理</h1>
+    <div class="text-center my-4">
+        <button class="btn btn-secondary" {% if not can_view_previous %}disabled{% endif %} onclick="location.href='/?year={{ year - (1 if month == 1 else 0) }}&month={{ 12 if month == 1 else month - 1 }}'">&lt;</button>
+        <span>{{ year }}年{{ month }}月の出費：{{ total }}円</span>
+        <button class="btn btn-secondary" {% if not can_view_next %}disabled{% endif %} onclick="location.href='/?year={{ year + (1 if month == 12 else 0) }}&month={{ 1 if month == 12 else month + 1 }}'">&gt;</button>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-primary" onclick="location.href='/add'">支出入力する</button>
+    </div>
+</div>
 </body>
-
 </html>
