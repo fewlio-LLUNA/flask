@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,30 +9,33 @@
 <body>
 <div class="container mt-5">
     <h1 class="text-center">支出入力</h1>
-    <form action="/add" method="POST" id="expense-form">
-        <div class="mb-3">
+    <form action="/add" method="POST" id="expense-form" style="justify-items: center;">
+        <div class="mb-3" style="width: 100%; max-width: 600px;">
             <label for="date" class="form-label">日付</label>
-            <input type="date" id="date" name="date" class="form-control" value="{{ today }}">
+            <input type="date" id="date" name="date" class="form-control w-50" value="{{ today }}">
         </div>
-        <div id="expenses">
+        <div id="expenses" style="width: 100%; max-width: 600px;">
+            <label for="purpose" class="form-label">支出内容詳細</label>
             <div class="row g-3 mb-2">
-                <div class="col">
+                <div class="col-8">
                     <input type="text" name="purpose" class="form-control" placeholder="用途">
                 </div>
-                <div class="col">
+                <div class="col-4">
                     <input type="number" name="amount" class="form-control" placeholder="金額">
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-secondary mb-3" onclick="addRow()">＋</button>
-        <button type="submit" class="btn btn-primary">記録</button>
+        <div>
+            <button type="button" class=" btn btn-outline-secondary mb-3 " onclick="addRow()">＋</button>
+        </div>
+        <button type="submit" class="btn btn-primary">記録</button>        
     </form>
 </div>
 <script>
 function addRow() {
     const row = `<div class="row g-3 mb-2">
-                    <div class="col"><input type="text" name="purpose" class="form-control" placeholder="用途"></div>
-                    <div class="col"><input type="number" name="amount" class="form-control" placeholder="金額"></div>
+                    <div class="col-8"><input type="text" name="purpose" class="form-control" placeholder="用途"></div>
+                    <div class="col-4"><input type="number" name="amount" class="form-control" placeholder="金額"></div>
                  </div>`;
     document.getElementById('expenses').insertAdjacentHTML('beforeend', row);
 }
