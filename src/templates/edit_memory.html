@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>支出編集</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">支出編集</h1>
+    <form method="POST">
+        <div class="mb-3">
+            <label for="date" class="form-label">日付</label>
+            <input type="date" class="form-control" id="date" name="date" value="{{ expense.date.strftime('%Y-%m-%d') }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="purpose" class="form-label">項目</label>
+            <input type="text" class="form-control" id="purpose" name="purpose" value="{{ expense.purpose }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="amount" class="form-label">金額</label>
+            <input type="number" class="form-control" id="amount" name="amount" value="{{ expense.amount }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">更新</button>
+    </form>
+</div>
+</body>
+</html>

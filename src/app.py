@@ -77,5 +77,21 @@ def success():
     return render_template("success.html")
 
 
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit_memory(id):
+    expense = Expense.query.get_or_404(id)
+
+    if request.method == "POST":
+        # フォームから送信されたデータで更新
+        expense.date = datetime.strptime(request.form.get("date"), "%Y-%m-%d")
+        expense.purpose = request.form.get("purpose")
+        expense.amount = int(request.form.get("amount"))
+
+        db.session.commit()
+        return redirect(url_for("index"))
+
+    return render_template("edit_memory.html", expense=expense)
+
+
 if __name__ == "__main__":
     app.run(debug=True)
