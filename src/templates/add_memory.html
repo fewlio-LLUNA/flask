@@ -16,11 +16,11 @@
         </div>
         <div id="expenses" style="width: 100%; max-width: 600px;">
             <label for="purpose" class="form-label">支出内容詳細</label>
-            <div class="row g-3 mb-2">
+            <div class="row g-3 mb-2 align-items-center">
                 <div class="col-8">
                     <input type="text" name="purpose" class="form-control" placeholder="用途">
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <input type="number" name="amount" class="form-control" placeholder="金額">
                 </div>
             </div>
@@ -33,12 +33,24 @@
 </div>
 <script>
 function addRow() {
-    const row = `<div class="row g-3 mb-2">
-                    <div class="col-8"><input type="text" name="purpose" class="form-control" placeholder="用途"></div>
-                    <div class="col-4"><input type="number" name="amount" class="form-control" placeholder="金額"></div>
+    const row = `<div class="row g-3 mb-2 align-items-center">
+                    <div class="col-8">
+                        <input type="text" name="purpose" class="form-control" placeholder="用途">
+                    </div>
+                    <div class="col-3">
+                        <input type="number" name="amount" class="form-control" placeholder="金額">
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">－</button>
+                    </div>
                  </div>`;
     document.getElementById('expenses').insertAdjacentHTML('beforeend', row);
 }
+
+function removeRow(button) {
+    button.closest('.row').remove();
+}
+
 </script>
 </body>
 </html>
