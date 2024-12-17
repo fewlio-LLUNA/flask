@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <title>支出管理</title>
+
+    <style>
+        /* 操作列（最後の列）の右側の枠線を非表示 */
+        .table td:last-child,
+        .table th:last-child {
+            border-right: none;
+        }
+        
+        /* 操作列の横線を非表示 */
+        .table td:last-child,
+        .table th:last-child {
+            border-bottom: none;
+        }
+    </style>
+
 </head>
 <body>
 <div class="container mt-5">
@@ -26,6 +41,7 @@
                 <th>日付</th>
                 <th>項目</th>
                 <th>金額</th>
+                <th>操作</th> <!-- 操作列を追加 -->
             </tr>
         </thead>
         <tbody>
@@ -34,7 +50,8 @@
                 <td>{{ expense.date }}</td>
                 <td>{{ expense.purpose }}</td>
                 <td>{{ expense.amount }}円</td>
-                <td>
+                <!-- 編集ボタンを右側に配置 -->
+                <td class="noborder">
                     <a href="{{ url_for('edit_memory', id=expense.id) }}" class="btn btn-warning">編集</a>
                 </td>
             </tr>
