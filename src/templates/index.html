@@ -17,6 +17,35 @@
     <div class="text-center">
         <button class="btn btn-primary" onclick="location.href='/add'">支出入力する</button>
     </div>
+
+
+    <!-- 支出の一覧表示 -->
+    <br>
+    <br>
+    <h3 class="text-center">支出一覧</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>日付</th>
+                <th>項目</th>
+                <th>金額</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense.id }}</td>
+                <td>{{ expense.date }}</td>
+                <td>{{ expense.purpose }}</td>
+                <td>{{ expense.amount }}円</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
 </div>
 </body>
 </html>

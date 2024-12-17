@@ -47,6 +47,7 @@ def index():
         year=year,
         month=month,
         total=total,
+        expenses=expenses,  # 支出データを渡す
         can_view_previous=can_view_previous,
         can_view_next=can_view_next,
     )
